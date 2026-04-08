@@ -1,0 +1,10 @@
+{
+  "siguiente_id": 2,
+  "tareas": [
+    {
+      "id": 1,
+      "texto": "uno",
+      "completada": true
+    }
+  ]
+}

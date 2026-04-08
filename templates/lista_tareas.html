@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lista de tareas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="contenedor">
+    <header class="cabecera">
+      <h1>Lista de tareas</h1>
+    </header>
+
+    <section class="bloque formulario-tareas" aria-labelledby="titulo-nueva">
+      <h2 id="titulo-nueva">Añadir tarea</h2>
+      <form
+        class="form-agregar"
+        method="post"
+        action="{{ url_for('agregar') }}"
+        autocomplete="off"
+      >
+        <div class="campo">
+          <label for="texto">Descripción</label>
+          <input
+            id="texto"
+            name="texto"
+            type="text"
+            required
+            maxlength="500"
+            placeholder="Escribe lo que hay que hacer…"
+          >
+        </div>
+        <div class="acciones">
+          <button type="submit">Añadir tarea</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="bloque listado-tareas" aria-labelledby="titulo-lista">
+      <h2 id="titulo-lista">Tareas</h2>
+      {% if tareas %}
+      <ul class="lista">
+        {% for t in tareas %}
+        <li class="item {% if t['completada'] %}hecha{% endif %}">
+          <span class="item-texto">{{ t['texto'] }}</span>
+          {% if not t['completada'] %}
+          <form
+            class="form-completar"
+            method="post"
+            action="{{ url_for('completar', tarea_id=t['id']) }}"
+          >
+            <button type="submit" class="secundario">Completar</button>
+          </form>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="sin-tareas">No hay tareas. Añade la primera arriba.</p>
+      {% endif %}
+    </section>
+  </main>
+</body>
+</html>
