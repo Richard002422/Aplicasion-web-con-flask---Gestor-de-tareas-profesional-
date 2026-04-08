@@ -1,0 +1,1 @@
+Dasarrollo de una pequeña aplicación web para gestionar tareas pendientes (to-do list). Los usuarios podrán agregar tareas, marcarlas como completadas y ver la lista actual. Usaremos Flask, un micro-framework web de Python muy popular y sencillo de aprender. Este proyecto cubrirá conceptos de desarrollo web como rutas, plantillas HTML, formularios y despliegue local.
